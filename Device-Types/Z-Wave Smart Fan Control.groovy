@@ -7,71 +7,71 @@ metadata {
 		capability "Polling"
 		capability "Refresh"
 		capability "Sensor"
-    //capability "speed"
-    
-    command "lowSpeed"https://github.com/ChadCK/SmartThings/new/master#
-    command "medSpeed"
-    command "highSpeed"
+		//capability "speed"
 
-    attribute "currentState", "string"
+		command "lowSpeed"https://github.com/ChadCK/SmartThings/new/master#
+		command "medSpeed"
+		command "highSpeed"
 
-    //fingerprint inClusters: "0x26"
+		attribute "currentState", "string"
+
+		//fingerprint inClusters: "0x26"
 	}
-  tiles (scale:2) {
+	tiles (scale:2) {
 		multiAttributeTile(name: "switch", type: "lighting", width: 6, height: 4, canChangeIcon: true) {
-    	tileAttribute ("device.currentState", key: "PRIMARY_CONTROL") {
-    	attributeState "default", label:'${currentValue}', action:"switch.off", icon:"st.Lighting.light24", backgroundColor:"#2179b8", nextState: "turningOff"
-      attributeState "HIGH", label:'HIGH', action:"switch.off", icon:"st.Lighting.light24", backgroundColor:"#486e13", nextState: "turningOff"
-      attributeState "MED", label:'MED', action:"switch.off", icon:"st.Lighting.light24", backgroundColor:"#60931a", nextState: "turningOff"
-      attributeState "LOW", label:'LOW', action:"switch.off", icon:"st.Lighting.light24", backgroundColor:"#79b821", nextState: "turningOff"
-	  	attributeState "OFF", label:'OFF', action:"switch.on", icon:"st.Lighting.light24", backgroundColor:"#ffffff", nextState: "turningOn"
-			attributeState "turningOn", action:"switch.on", label:'TURNINGON', icon:"st.Lighting.light24", backgroundColor:"#2179b8", nextState: "turningOn"
-			attributeState "turningOff", action:"switch.off", label:'TURNINGOFF', icon:"st.Lighting.light24", backgroundColor:"#2179b8", nextState: "turningOff"
-      attributeState "changingState", label:'ADJUSTING', icon:"st.Lighting.light24", backgroundColor:"#2179b8"
+    			tileAttribute ("device.currentState", key: "PRIMARY_CONTROL") {
+				attributeState "default", label:'${currentValue}', action:"switch.off", icon:"st.Lighting.light24", backgroundColor:"#2179b8", nextState: "turningOff"
+				attributeState "HIGH", label:'HIGH', action:"switch.off", icon:"st.Lighting.light24", backgroundColor:"#486e13", nextState: "turningOff"
+				attributeState "MED", label:'MED', action:"switch.off", icon:"st.Lighting.light24", backgroundColor:"#60931a", nextState: "turningOff"
+				attributeState "LOW", label:'LOW', action:"switch.off", icon:"st.Lighting.light24", backgroundColor:"#79b821", nextState: "turningOff"
+				attributeState "OFF", label:'OFF', action:"switch.on", icon:"st.Lighting.light24", backgroundColor:"#ffffff", nextState: "turningOn"
+				attributeState "turningOn", action:"switch.on", label:'TURNINGON', icon:"st.Lighting.light24", backgroundColor:"#2179b8", nextState: "turningOn"
+				attributeState "turningOff", action:"switch.off", label:'TURNINGOFF', icon:"st.Lighting.light24", backgroundColor:"#2179b8", nextState: "turningOff"
+				attributeState "changingState", label:'ADJUSTING', icon:"st.Lighting.light24", backgroundColor:"#2179b8"
+			}
+			tileAttribute ("device.level", key: "SECONDARY_CONTROL") {
+				attributeState "level", label:'${currentValue}%'
+			}
 		}
-    tileAttribute ("device.level", key: "SECONDARY_CONTROL") {
-			attributeState "level", label:'${currentValue}%'
+		standardTile("lowSpeed", "device.currentState", inactiveLabel: false, decoration: "flat", width: 2, height: 2) {
+			state "MED", label: 'LOW', action: "lowSpeed", icon:"st.Home.home30", backgroundColor: "#ffffff"
+			state "HIGH", label: 'LOW', action: "lowSpeed", icon:"st.Home.home30", backgroundColor: "#ffffff"
+			state "OFF", label: 'LOW', action: "lowSpeed", icon:"st.Home.home30", backgroundColor: "#ffffff"
+			state "LOW", label:'LOW', action: "lowSpeed", icon:"st.Home.home30", backgroundColor: "#79b821"
+  		}
+		standardTile("medSpeed", "device.currentState", inactiveLabel: false, decoration: "flat", width: 2, height: 2) {
+			state "LOW", label: 'MED', action: "medSpeed", icon:"st.Home.home30", backgroundColor: "#ffffff"
+			state "HIGH", label: 'MED', action: "medSpeed", icon:"st.Home.home30", backgroundColor: "#ffffff"
+			state "OFF", label: 'MED', action: "medSpeed", icon:"st.Home.home30", backgroundColor: "#ffffff"
+			state "MED", label: 'MED', action: "medSpeed", icon:"st.Home.home30", backgroundColor: "#79b821"
 		}
-  }
-  standardTile("lowSpeed", "device.currentState", inactiveLabel: false, decoration: "flat", width: 2, height: 2) {
-    state "MED", label: 'LOW', action: "lowSpeed", icon:"st.Home.home30", backgroundColor: "#ffffff"
-    state "HIGH", label: 'LOW', action: "lowSpeed", icon:"st.Home.home30", backgroundColor: "#ffffff"
-    state "OFF", label: 'LOW', action: "lowSpeed", icon:"st.Home.home30", backgroundColor: "#ffffff"
-    state "LOW", label:'LOW', action: "lowSpeed", icon:"st.Home.home30", backgroundColor: "#79b821"
-  }
-  standardTile("medSpeed", "device.currentState", inactiveLabel: false, decoration: "flat", width: 2, height: 2) {
-    state "LOW", label: 'MED', action: "medSpeed", icon:"st.Home.home30", backgroundColor: "#ffffff"
-    state "HIGH", label: 'MED', action: "medSpeed", icon:"st.Home.home30", backgroundColor: "#ffffff"
-    state "OFF", label: 'MED', action: "medSpeed", icon:"st.Home.home30", backgroundColor: "#ffffff"
-    state "MED", label: 'MED', action: "medSpeed", icon:"st.Home.home30", backgroundColor: "#79b821"
-  }
-  standardTile("highSpeed", "device.currentState", inactiveLabel: false, decoration: "flat", width: 2, height: 2) {
-    state "LOW", label: 'HIGH', action: "highSpeed", icon:"st.Home.home30", backgroundColor: "#ffffff"
-    state "MED", label: 'HIGH', action: "highSpeed", icon:"st.Home.home30", backgroundColor: "#ffffff"
-    state "OFF", label: 'HIGH', action: "highSpeed", icon:"st.Home.home30", backgroundColor: "#ffffff"
-    state "HIGH", label: 'HIGH', action: "highSpeed", icon:"st.Home.home30", backgroundColor: "#79b821"
-  }
-	standardTile("refresh", "device.switch", inactiveLabel: false, decoration: "flat", width: 2, height: 2) {
-		state "default", label:"", action:"refresh.refresh", icon:"st.secondary.refresh"
+		standardTile("highSpeed", "device.currentState", inactiveLabel: false, decoration: "flat", width: 2, height: 2) {
+			state "LOW", label: 'HIGH', action: "highSpeed", icon:"st.Home.home30", backgroundColor: "#ffffff"
+			state "MED", label: 'HIGH', action: "highSpeed", icon:"st.Home.home30", backgroundColor: "#ffffff"
+			state "OFF", label: 'HIGH', action: "highSpeed", icon:"st.Home.home30", backgroundColor: "#ffffff"
+			state "HIGH", label: 'HIGH', action: "highSpeed", icon:"st.Home.home30", backgroundColor: "#79b821"
+		}
+		standardTile("refresh", "device.switch", inactiveLabel: false, decoration: "flat", width: 2, height: 2) {
+			state "default", label:"", action:"refresh.refresh", icon:"st.secondary.refresh"
+		}
+		standardTile("indicator", "device.indicatorStatus", inactiveLabel: false, decoration: "flat", width: 2, height: 2) {
+			state "when off", action:"indicator.indicatorWhenOn", icon:"st.indicators.lit-when-off"
+			state "when on", action:"indicator.indicatorNever", icon:"st.indicators.lit-when-on"
+			state "never", action:"indicator.indicatorWhenOff", icon:"st.indicators.never-lit"
+		}
+		controlTile("levelSliderControl", "device.level", "slider", height: 1, width: 6, inactiveLabel: false) {
+			state "level", action:"switch level.setLevel"
+		}
+		main(["switch"])
+		details(["switch", "lowSpeed", "medSpeed", "highSpeed", "refresh", "indicator", "levelSliderControl"])
 	}
-	standardTile("indicator", "device.indicatorStatus", inactiveLabel: false, decoration: "flat", width: 2, height: 2) {
-		state "when off", action:"indicator.indicatorWhenOn", icon:"st.indicators.lit-when-off"
-		state "when on", action:"indicator.indicatorNever", icon:"st.indicators.lit-when-on"
-		state "never", action:"indicator.indicatorWhenOff", icon:"st.indicators.never-lit"
+	preferences {
+		section("Fan Thresholds") {
+			input "lowThreshold", "number", title: "Low Threshold", range: "1..99" //, defaultValue: "33", required: true, displayDuringSetup: true
+			input "medThreshold", "number", title: "Medium Threshold", range: "1..99" //, defaultValue: "67", required: true, displayDuringSetup: true
+			input "highThreshold", "number", title: "High Threshold", range: "1..99" //, defaultValue: "99",  required: true, displayDuringSetup: true
+		}
 	}
-	controlTile("levelSliderControl", "device.level", "slider", height: 1, width: 6, inactiveLabel: false) {
-		state "level", action:"switch level.setLevel"
-	}
-	main(["switch"])
-    details(["switch", "lowSpeed", "medSpeed", "highSpeed", "refresh", "indicator", "levelSliderControl"])
-	}
-  preferences {
-    section("Fan Thresholds") {
-      input "lowThreshold", "number", title: "Low Threshold", range: "1..99" //, defaultValue: "33", required: true, displayDuringSetup: true
-      input "medThreshold", "number", title: "Medium Threshold", range: "1..99" //, defaultValue: "67", required: true, displayDuringSetup: true
-      input "highThreshold", "number", title: "High Threshold", range: "1..99" //, defaultValue: "99",  required: true, displayDuringSetup: true
-    }
-  }
 }
 
 def parse(String description) {
@@ -111,12 +111,12 @@ def createEvent(physicalgraph.zwave.commands.basicv1.BasicSet cmd, Map item1) {
 		result[i].type = "physical"
 	}
 	log.trace "BasicSet"
-    result
+	result
 }
 
 def createEvent(physicalgraph.zwave.commands.switchmultilevelv1.SwitchMultilevelStartLevelChange cmd, Map item1) {
 	[]
-  log.trace "StartLevel"
+	log.trace "StartLevel"
 }
 
 def createEvent(physicalgraph.zwave.commands.switchmultilevelv1.SwitchMultilevelStopLevelChange cmd, Map item1) {
@@ -129,7 +129,7 @@ def createEvent(physicalgraph.zwave.commands.switchmultilevelv1.SwitchMultilevel
 		result[i].type = "physical"
 	}
 	log.trace "SwitchMultiLevelSet"
-  result
+	result
 }
 
 def createEvent(physicalgraph.zwave.commands.switchmultilevelv1.SwitchMultilevelReport cmd, Map item1) {
@@ -140,20 +140,20 @@ def createEvent(physicalgraph.zwave.commands.switchmultilevelv1.SwitchMultilevel
 		result[i].type = "digital"
 	}
 	log.trace "SwitchMultilevelReport"
-  result
+	result
 }
 
 def doCreateEvent(physicalgraph.zwave.Command cmd, Map item1) {
 	def result = [item1]
-  def lowThresholdvalue = (settings.lowThreshold != null && settings.lowThreshold != "") ? settings.lowThreshold.toString() : "33"
-  def medThresholdvalue = (settings.medThreshold != null && settings.medThreshold != "") ? settings.medThreshold.toString() : "67"
+	def lowThresholdvalue = (settings.lowThreshold != null && settings.lowThreshold != "") ? settings.lowThreshold.toString() : "33"
+	def medThresholdvalue = (settings.medThreshold != null && settings.medThreshold != "") ? settings.medThreshold.toString() : "67"
 	def highThresholdvalue = (settings.highThreshold != null && settings.highThreshold != "") ? settings.highThreshold.toString() : "99"
 
 	item1.name = "switch"
 	item1.value = cmd.value ? "on" : "off"
-  if (item1.value == "off") {
-   	sendEvent(name: "currentState", value: "OFF" as String)
-  }
+	if (item1.value == "off") {
+		sendEvent(name: "currentState", value: "OFF" as String)
+	}
 	item1.handlerName = item1.value
 	item1.descriptionText = "${item1.linkText} was turned ${item1.value}"
 	item1.canBeCurrentState = true
@@ -170,25 +170,25 @@ def doCreateEvent(physicalgraph.zwave.Command cmd, Map item1) {
 		item2.isStateChange = isStateChange(device, item2.name, item2.value)
 		item2.displayed = false
 
-        if (item2.value <= lowThresholdvalue) {
-          sendEvent(name: "currentState", value: "LOW" as String)
-        }
-        if (item2.value >= lowThresholdvalue+1 && item2.value <= medThresholdvalue) {
-          sendEvent(name: "currentState", value: "MED" as String)
-        }
-        if (item2.value >= medThresholdvalue+1) {
-          sendEvent(name: "currentState", value: "HIGH" as String)
-        }
+		if (item2.value <= lowThresholdvalue) {
+			sendEvent(name: "currentState", value: "LOW" as String)
+		}
+		if (item2.value >= lowThresholdvalue+1 && item2.value <= medThresholdvalue) {
+			sendEvent(name: "currentState", value: "MED" as String)
+	 	}
+		if (item2.value >= medThresholdvalue+1) {
+			sendEvent(name: "currentState", value: "HIGH" as String)
+		}
 
-    result << item2
+		result << item2
 	}
 	log.trace "doCreateEvent"
-  result
+	result
 }
 
 def zwaveEvent(physicalgraph.zwave.commands.configurationv1.ConfigurationReport cmd) {
 	def value = "when off"
-  log.trace "ConfigurationReport"
+	log.trace "ConfigurationReport"
 	if (cmd.configurationValue[0] == 1) {value = "when on"}
 	if (cmd.configurationValue[0] == 2) {value = "never"}
 	[name: "indicatorStatus", value: value, display: false]
@@ -211,31 +211,31 @@ def off() {
 
 def setLevel(value) {
 	sendEvent(name: "currentState", value: "changingState" as String, displayed: false)
-  def level = Math.min(value as Integer, 99)
-  log.trace "setLevel(value): ${level}"
- 	delayBetween ([zwave.basicV1.basicSet(value: level as Integer).format(), zwave.switchMultilevelV1.switchMultilevelGet().format()], 1000)
+	def level = Math.min(value as Integer, 99)
+	log.trace "setLevel(value): ${level}"
+	delayBetween ([zwave.basicV1.basicSet(value: level as Integer).format(), zwave.switchMultilevelV1.switchMultilevelGet().format()], 1000)
 }
 
 def setLevel(value, duration) {
 	sendEvent(name: "currentState", value: "changingState" as String, displayed: false)
-  def level = Math.min(value as Integer, 99)
+	def level = Math.min(value as Integer, 99)
 	def dimmingDuration = duration < 128 ? duration : 128 + Math.round(duration / 60)
-  zwave.switchMultilevelV2.switchMultilevelSet(value: level, dimmingDuration: dimmingDuration).format()
+	zwave.switchMultilevelV2.switchMultilevelSet(value: level, dimmingDuration: dimmingDuration).format()
 }
 
 def lowSpeed() {
-  def lowThresholdvalue = (settings.lowThreshold != null && settings.lowThreshold != "") ? settings.lowThreshold.toString() : "33"
-  setLevel(lowThresholdvalue)
+	def lowThresholdvalue = (settings.lowThreshold != null && settings.lowThreshold != "") ? settings.lowThreshold.toString() : "33"
+	setLevel(lowThresholdvalue)
 }
 
 def medSpeed() {
-  def medThresholdvalue = (settings.medThreshold != null && settings.medThreshold != "") ? settings.medThreshold.toString()  : "67"
-  setLevel(medThresholdvalue)
+	def medThresholdvalue = (settings.medThreshold != null && settings.medThreshold != "") ? settings.medThreshold.toString()  : "67"
+	setLevel(medThresholdvalue)
 }
 
 def highSpeed() {
 	def highThresholdvalue = (settings.highThreshold != null && settings.highThreshold != "") ? settings.highThreshold.toString() : "99"
-  setLevel(highThresholdvalue)
+	setLevel(highThresholdvalue)
 }
 
 def poll() {
