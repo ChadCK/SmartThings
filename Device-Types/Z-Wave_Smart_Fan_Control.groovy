@@ -62,11 +62,11 @@ metadata {
 			state "when on", action:"indicator.indicatorNever", icon:"st.indicators.lit-when-on"
 			state "never", action:"indicator.indicatorWhenOff", icon:"st.indicators.never-lit"
 		}
-		controlTile("levelSliderControl", "device.level", "slider", height: 1, width: 6, inactiveLabel: false) {
+		controlTile("levelSliderControl", "device.level", "slider", height: 2, width: 2, inactiveLabel: false) {
 			state "level", action:"switch level.setLevel"
 		}
 		main(["switch"])
-		details(["switch", "lowSpeed", "medSpeed", "highSpeed", "refresh", "indicator", "levelSliderControl"])
+		details(["switch", "lowSpeed", "medSpeed", "highSpeed", "indicator", "levelSliderControl", "refresh"])
 	}
 	preferences {
 		section("Fan Thresholds") {
