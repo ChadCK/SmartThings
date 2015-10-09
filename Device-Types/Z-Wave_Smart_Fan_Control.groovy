@@ -30,7 +30,7 @@ metadata {
 				attributeState "OFF", label:'OFF', action:"switch.on", icon:"st.Lighting.light24", backgroundColor:"#ffffff", nextState: "turningOn"
 				attributeState "turningOn", action:"switch.on", label:'TURNINGON', icon:"st.Lighting.light24", backgroundColor:"#2179b8", nextState: "turningOn"
 				attributeState "turningOff", action:"switch.off", label:'TURNINGOFF', icon:"st.Lighting.light24", backgroundColor:"#2179b8", nextState: "turningOff"
-				attributeState "changingState", label:'ADJUSTING', icon:"st.Lighting.light24", backgroundColor:"#2179b8"
+				attributeState "changingState", action:"refresh.refresh", label:'ADJUSTING', icon:"st.Lighting.light24", backgroundColor:"#2179b8"
 			}
 			tileAttribute ("device.level", key: "SECONDARY_CONTROL") {
 				attributeState "level", label:'${currentValue}%'
