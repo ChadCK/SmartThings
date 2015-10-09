@@ -12,7 +12,7 @@ metadata {
 		capability "Sensor"
 		//capability "speed"
 
-		command "lowSpeed"https://github.com/ChadCK/SmartThings/new/master#
+		command "lowSpeed"
 		command "medSpeed"
 		command "highSpeed"
 
@@ -22,7 +22,7 @@ metadata {
 	}
 	tiles (scale:2) {
 		multiAttributeTile(name: "switch", type: "lighting", width: 6, height: 4, canChangeIcon: true) {
-				tileAttribute ("device.currentState", key: "PRIMARY_CONTROL") {
+			tileAttribute ("device.currentState", key: "PRIMARY_CONTROL") {
 				attributeState "default", label:'${currentValue}', action:"switch.off", icon:"st.Lighting.light24", backgroundColor:"#2179b8", nextState: "turningOff"
 				attributeState "HIGH", label:'HIGH', action:"switch.off", icon:"st.Lighting.light24", backgroundColor:"#486e13", nextState: "turningOff"
 				attributeState "MED", label:'MED', action:"switch.off", icon:"st.Lighting.light24", backgroundColor:"#60931a", nextState: "turningOff"
