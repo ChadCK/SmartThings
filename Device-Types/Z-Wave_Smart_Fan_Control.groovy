@@ -70,9 +70,9 @@ metadata {
 	}
 	preferences {
 		section("Fan Thresholds") {
-			input "lowThreshold", "number", title: "Low Threshold", range: "1..99" //, defaultValue: "33", required: true, displayDuringSetup: true
-			input "medThreshold", "number", title: "Medium Threshold", range: "1..99" //, defaultValue: "67", required: true, displayDuringSetup: true
-			input "highThreshold", "number", title: "High Threshold", range: "1..99" //, defaultValue: "99",  required: true, displayDuringSetup: true
+			input "lowThreshold", "number", title: "Low Threshold", range: "1..99"
+			input "medThreshold", "number", title: "Medium Threshold", range: "1..99"
+			input "highThreshold", "number", title: "High Threshold", range: "1..99"
 		}
 	}
 }
