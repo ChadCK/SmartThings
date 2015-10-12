@@ -10,7 +10,6 @@ metadata {
 		capability "Polling"
 		capability "Refresh"
 		capability "Sensor"
-		//capability "speed"
 
 		command "lowSpeed"
 		command "medSpeed"
@@ -18,7 +17,7 @@ metadata {
 
 		attribute "currentState", "string"
 
-		//fingerprint inClusters: "0x26"
+		//fingerprint deviceId: "0x1101", inClusters: "0x26, 0x27, 0x70, 0x86, 0x72"
 	}
 	tiles (scale:2) {
 		multiAttributeTile(name: "switch", type: "lighting", width: 6, height: 4, canChangeIcon: true) {
