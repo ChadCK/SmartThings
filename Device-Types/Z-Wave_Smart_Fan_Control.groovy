@@ -184,7 +184,7 @@ def doCreateEvent(physicalgraph.zwave.Command cmd, Map item1) {
 		item2.isStateChange = isStateChange(device, item2.name, item2.value)
 		item2.displayed = false
 
-		if (item2.value.toInteger() <= lowThresholdvalue) {	sendEvent(name: "currentState", value: "LOW" as String)	}
+		if (item2.value.toInteger() <= lowThresholdvalue) { sendEvent(name: "currentState", value: "LOW" as String) }
 		if (item2.value.toInteger() >= lowThresholdvalue+1 && item2.value.toInteger() <= medThresholdvalue) { sendEvent(name: "currentState", value: "MED" as String) }
 		if (item2.value.toInteger() >= medThresholdvalue+1) { sendEvent(name: "currentState", value: "HIGH" as String) }
 
@@ -230,7 +230,7 @@ def setLevel(value) {
 	
 	log.trace "setLevel(value): ${level}"
     
-	if (level <= lowThresholdvalue) { sendEvent(name: "currentState", value: "ADJUSTING.LOW" as String, displayed: false)	}
+	if (level <= lowThresholdvalue) { sendEvent(name: "currentState", value: "ADJUSTING.LOW" as String, displayed: false) }
 	if (level >= lowThresholdvalue+1 && level <= medThresholdvalue) { sendEvent(name: "currentState", value: "ADJUSTING.MED" as String, displayed: false) }
 	if (level >= medThresholdvalue+1) { sendEvent(name: "currentState", value: "ADJUSTING.HIGH" as String, displayed: false) }
 	
@@ -252,8 +252,8 @@ def setLevel(value, duration) {
 	log.trace "setLevel(value): ${level}"
 	
 	if (level <= lowThresholdvalue) { sendEvent(name: "currentState", value: "ADJUSTING.LOW" as String, displayed: false) }
-	if (level >= lowThresholdvalue+1 && level <= medThresholdvalue) { sendEvent(name: "currentState", value: "ADJUSTING.MED" as String, displayed: false)	}
-	if (level >= medThresholdvalue+1) {	sendEvent(name: "currentState", value: "ADJUSTING.HIGH" as String, displayed: false) }
+	if (level >= lowThresholdvalue+1 && level <= medThresholdvalue) { sendEvent(name: "currentState", value: "ADJUSTING.MED" as String, displayed: false) }
+	if (level >= medThresholdvalue+1) { sendEvent(name: "currentState", value: "ADJUSTING.HIGH" as String, displayed: false) }
     
 	zwave.switchMultilevelV2.switchMultilevelSet(value: level, dimmingDuration: dimmingDuration).format()
 }
