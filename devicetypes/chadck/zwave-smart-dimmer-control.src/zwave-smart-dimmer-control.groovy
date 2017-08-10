@@ -41,15 +41,15 @@ metadata {
 	tiles (scale:2) {
 		multiAttributeTile(name: "switch", type: "lighting", width: 6, height: 4, canChangeIcon: true) {
 			tileAttribute ("device.currentState", key: "PRIMARY_CONTROL") {
-				attributeState "default", label:'ADJUSTING', action:"refresh.refresh", icon:"st.Lighting.light13", backgroundColor:"#2179b8", nextState: "turningOff"
-				attributeState "HIGH", label:'HIGH', action:"switch.off", icon:"st.Lighting.light13", backgroundColor:"#486e13", nextState: "turningOff"
-				attributeState "MEDHIGH", label:'MEDHIGH', action:"switch.off", icon:"st.Lighting.light13", backgroundColor:"#60931a", nextState: "turningOff"
-				attributeState "MED", label:'MED', action:"switch.off", icon:"st.Lighting.light13", backgroundColor:"#60931a", nextState: "turningOff"
-				attributeState "LOWMED", label:'LOWMED', action:"switch.off", icon:"st.Lighting.light13", backgroundColor:"#60931a", nextState: "turningOff"
-				attributeState "LOW", label:'LOW', action:"switch.off", icon:"st.Lighting.light13", backgroundColor:"#79b821", nextState: "turningOff"
-				attributeState "OFF", label:'OFF', action:"switch.on", icon:"st.Lighting.light13", backgroundColor:"#ffffff", nextState: "turningOn"
-				attributeState "turningOn", action:"switch.on", label:'TURNINGON', icon:"st.Lighting.light13", backgroundColor:"#2179b8", nextState: "turningOn"
-				attributeState "turningOff", action:"switch.off", label:'TURNINGOFF', icon:"st.Lighting.light13", backgroundColor:"#2179b8", nextState: "turningOff"
+				attributeState "default", label:'ADJUSTING', action:"refresh.refresh", icon:"st.Lighting.light11", backgroundColor:"#2179b8", nextState: "turningOff"
+				attributeState "HIGH", label:'HIGH', action:"switch.off", icon:"st.Lighting.light11", backgroundColor:"#486e13", nextState: "turningOff"
+				attributeState "MEDHIGH", label:'MEDHIGH', action:"switch.off", icon:"st.Lighting.light11", backgroundColor:"#60931a", nextState: "turningOff"
+				attributeState "MED", label:'MED', action:"switch.off", icon:"st.Lighting.light11", backgroundColor:"#60931a", nextState: "turningOff"
+				attributeState "LOWMED", label:'LOWMED', action:"switch.off", icon:"st.Lighting.light11", backgroundColor:"#60931a", nextState: "turningOff"
+				attributeState "LOW", label:'LOW', action:"switch.off", icon:"st.Lighting.light11", backgroundColor:"#79b821", nextState: "turningOff"
+				attributeState "OFF", label:'OFF', action:"switch.on", icon:"st.Lighting.light11", backgroundColor:"#ffffff", nextState: "turningOn"
+				attributeState "turningOn", action:"switch.on", label:'TURNINGON', icon:"st.Lighting.light11", backgroundColor:"#2179b8", nextState: "turningOn"
+				attributeState "turningOff", action:"switch.off", label:'TURNINGOFF', icon:"st.Lighting.light11", backgroundColor:"#2179b8", nextState: "turningOff"
 			}
 			tileAttribute ("device.level", key: "SECONDARY_CONTROL") {
 				attributeState "level", label:'${currentValue}%'
@@ -230,12 +230,12 @@ def createEvent(physicalgraph.zwave.Command cmd,  Map map) {
 
 def on() {
 	log.info "on"
-	delayBetween([zwave.basicV1.basicSet(value: 0xFF).format(), zwave.switchMultilevelV1.switchMultilevelGet().format()], 3000)
+	delayBetween([zwave.basicV1.basicSet(value: 0xFF).format(), zwave.switchMultilevelV1.switchMultilevelGet().format()], 1000)
 }
 
 def off() {
 	log.info "off"
-	delayBetween ([zwave.basicV1.basicSet(value: 0x00).format(), zwave.switchMultilevelV1.switchMultilevelGet().format()], 3000)
+	delayBetween ([zwave.basicV1.basicSet(value: 0x00).format(), zwave.switchMultilevelV1.switchMultilevelGet().format()], 1000)
 }
 
 def setLevel(value) {
@@ -261,7 +261,7 @@ def setLevel(value) {
 	if (level >= medThresholdvalue+((medhighThresholdvalue-medThresholdvalue)/2)+1 && level <= medhighThresholdvalue+((highThresholdvalue-medhighThresholdvalue)/2)) { sendEvent(name: "currentState", value: "ADJUSTING.MEDHIGH" as String, displayed: false) }
 	if (level >= medhighThresholdvalue+((highThresholdvalue-medhighThresholdvalue)/2)+1) { sendEvent(name: "currentState", value: "ADJUSTING.HIGH" as String, displayed: false) }
 
-	delayBetween ([zwave.basicV1.basicSet(value: level as Integer).format(), zwave.switchMultilevelV1.switchMultilevelGet().format()], 3000)
+	delayBetween ([zwave.basicV1.basicSet(value: level as Integer).format(), zwave.switchMultilevelV1.switchMultilevelGet().format()], 1000)
 }
 
 def setLevel(value, duration) {
